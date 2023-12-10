@@ -1,0 +1,63 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    overflow: auto;
+    background: linear-gradient(270deg, #b086ff, #86ff9a);
+}
+
+main {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+#data {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+#chart {
+    flex-grow: 1;
+}
+
+#fact-list {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.base {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-weight: bold;
+}
+
+.btn, input::file-selector-button {
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: white;
+    color: black;
+    border: none;
+    font-weight: bold;
+    align-self: start;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        filter: brightness(90%);
+    }
+    &:active {
+        filter: brightness(80%);
+    }
+}

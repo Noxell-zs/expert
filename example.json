@@ -1,0 +1,30 @@
+{
+  "theme":  "Тематика",
+  "facts": {
+    "f1": {
+      "name": "Факт 1",
+      "coef": null
+    },
+    "f2": {
+      "name": "Факт 2",
+      "coef": null
+    }
+  },
+  "results": {
+    "r3": {
+      "name": "Факт 3",
+      "coef": null,
+      "rules": [
+        {"positive": ["f1"], "negative": ["f2"], "coef": 0.5}
+      ]
+    },
+    "r4": {
+      "name": "Факт 4",
+      "coef": null,
+      "rules": [
+        {"positive": ["f2", "r3"], "negative": [], "coef": 0.4},
+        {"positive": [], "negative": ["f1"], "coef": -0.6}
+      ]
+    }
+  }
+}

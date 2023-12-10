@@ -1,0 +1,160 @@
+:root {
+    overflow-wrap: anywhere;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    overflow: auto;
+    background: linear-gradient(90deg, #b086ff, #86ff9a);
+}
+
+main {
+    padding: 0.25rem;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+button, .btn {
+    cursor: pointer;
+
+    &:hover {
+        filter: brightness(90%);
+    }
+    &:active {
+        filter: brightness(80%);
+    }
+}
+
+#fact-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    flex-grow: 1;
+    align-self: stretch;
+    justify-content: space-around;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input, select, textarea {
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: none;
+    background-color: white;
+
+    &::placeholder {
+        text-align: center;
+    }
+}
+
+.add-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.title {
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.list {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.delete {
+    width: 1rem;
+    height: 1rem;
+    border: none;
+    background: url("./../icons/x.svg") center;
+}
+
+.add-btn {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 8px;
+    background-color: white;
+    border: none;
+}
+
+.btn {
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: white;
+    color: black;
+    border: none;
+    font-weight: bold;
+    align-self: start;
+    text-decoration: none;
+}
+
+
+#rules-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.rules-set {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.fact-set {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+
+    > label  {
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+.negative {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.rule-params {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-evenly;
+}
+
+.fact-rule-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 0.5rem;
+}

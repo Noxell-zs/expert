@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Использование базы знаний</title>
+    <meta name="robots" content="none"/>
+
+    <link rel="icon" type="image/svg+xml" href="./../icons/database-gear.svg" sizes="any"/>
+    <meta name="theme-color" content="#86ff9a"/>
+
+    <link rel="stylesheet" href="user.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts" defer></script>
+    <script src="user.js" defer></script>
+</head>
+<body>
+    <main>
+        <label class="base">
+            Файл базы знаний
+            <input
+                    id="file"
+                    type="file"
+                    accept="application/json"
+            />
+        </label>
+
+        <div id="data">
+            <div id="fact-list"></div>
+            <div id="chart"></div>
+        </div>
+
+        <nav>
+            <a class="btn" href="/expert/">Назад</a>
+        </nav>
+    </main>
+</body>
+</html>

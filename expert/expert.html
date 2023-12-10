@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Создание базы знаний</title>
+    <meta name="robots" content="none"/>
+
+    <link rel="icon" type="image/svg+xml" href="./../icons/database-gear.svg" sizes="any">/
+    <meta name="theme-color" content="#b086ff"/>
+
+    <link rel="stylesheet" href="expert.css"/>
+    <script src="expert.js" defer></script>
+</head>
+<body>
+    <template id="item-template">
+        <li class="item">
+            <span class="text"></span>
+            <button class="delete" title="Удалить"></button>
+        </li>
+    </template>
+
+    <template id="rules-template">
+        <fieldset class="rules-set">
+            <div class="rule-params">
+                <select required></select>
+                <input
+                    type="number"
+                    placeholder="Коэффициент уверенности"
+                    min="-1"
+                    max="1"
+                    value="0"
+                    required
+                />
+                <button class="btn add-fact-btn">Добавить факт</button>
+                <button class="btn delete-rule-btn">Удалить правило</button>
+            </div>
+
+            <div class="fact-rule-list"></div>
+        </fieldset>
+    </template>
+
+    <template id="rules-fact-template">
+        <fieldset class="fact-set">
+            <label class="negative">
+                ¬ <input type="checkbox"/>
+            </label>
+            <select required></select>
+        </fieldset>
+    </template>
+
+    <main>
+        <a
+            style="visibility: hidden; position: absolute;"
+            tabindex="-1"
+            download
+            id="download"
+        ></a>
+
+        <section id="fact-section">
+            <div class="column">
+                <h3 class="title">Тематика экспертной системы</h3>
+                <textarea placeholder="Тема" id="themeField"></textarea>
+            </div>
+
+            <div class="columns">
+                <div class="column">
+                    <h3 class="title">Исходные факты</h3>
+                    <div class="add-block">
+                        <textarea placeholder="Факт" id="fact-field"></textarea>
+                        <button class="add-btn" id="addFact" title="Добавить">+</button>
+                    </div>
+                    <ul class="list" id="fact-list"></ul>
+                </div>
+
+                <div class="column">
+                    <h3 class="title">Возможные результаты</h3>
+                    <div class="add-block">
+                        <textarea placeholder="Результат" id="result-field"></textarea>
+                        <button class="add-btn" id="add-result" title="Добавить">+</button>
+                    </div>
+                    <ul class="list" id="result-list"></ul>
+                </div>
+            </div>
+
+            <nav class="columns">
+                <a class="btn" href="/expert/">Назад</a>
+                <button class="btn" id="to-rules-section">Далее</button>
+            </nav>
+        </section>
+
+        <section id="rules-section" hidden>
+            <div id="rule-list"></div>
+
+            <button class="btn" id="add-rule">Добавить правило</button>
+
+            <nav class="columns">
+                <button class="btn" id="to-facts-section">Назад</button>
+                <button class="btn" id="reset">Сбросить</button>
+                <button class="btn" id="save">Сохранить</button>
+            </nav>
+        </section>
+    </main>
+</body>
+</html>
