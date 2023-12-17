@@ -5,8 +5,8 @@
     <title>Создание базы знаний</title>
     <meta name="robots" content="none"/>
 
-    <link rel="icon" type="image/svg+xml" href="./../icons/database-gear.svg" sizes="any">/
-    <meta name="theme-color" content="#b086ff"/>
+    <link rel="icon" type="image/svg+xml" href="./../icons/database-gear.svg" sizes="any"/>
+    <meta name="theme-color" content="#fa8d9c"/>
 
     <link rel="stylesheet" href="expert.css"/>
     <script src="expert.js" defer></script>
@@ -22,7 +22,7 @@
     <template id="rules-template">
         <fieldset class="rules-set">
             <div class="rule-params">
-                <select required></select>
+                <select required class="field"></select>
                 <input
                     type="number"
                     placeholder="Коэффициент уверенности"
@@ -30,6 +30,7 @@
                     max="1"
                     value="0"
                     required
+                    class="field"
                 />
                 <button class="btn add-fact-btn">Добавить факт</button>
                 <button class="btn delete-rule-btn">Удалить правило</button>
@@ -44,9 +45,22 @@
             <label class="negative">
                 ¬ <input type="checkbox"/>
             </label>
-            <select required></select>
+            <select required class="field"></select>
         </fieldset>
     </template>
+
+    <header>
+        <label class="base">
+            Загрузить базу знаний
+            <input
+                id="file"
+                type="file"
+                accept="application/json"
+            />
+        </label>
+
+        <button class="btn" id="resetAll">Сбросить всё</button>
+    </header>
 
     <main>
         <a
@@ -58,16 +72,17 @@
 
         <section id="fact-section">
             <div class="column">
-                <h3 class="title">Тематика экспертной системы</h3>
-                <textarea placeholder="Тема" id="themeField"></textarea>
+                <h3 class="title">Тематика базы знаний</h3>
+                <textarea placeholder="Тема" id="theme-field" class="field"></textarea>
             </div>
 
+            <h2 class="title">Наполнение базы знаний</h2>
             <div class="columns">
                 <div class="column">
                     <h3 class="title">Исходные факты</h3>
                     <div class="add-block">
-                        <textarea placeholder="Факт" id="fact-field"></textarea>
-                        <button class="add-btn" id="addFact" title="Добавить">+</button>
+                        <textarea placeholder="Факт" id="fact-field" class="field"></textarea>
+                        <button class="add-btn" id="add-fact" title="Добавить">+</button>
                     </div>
                     <ul class="list" id="fact-list"></ul>
                 </div>
@@ -75,7 +90,7 @@
                 <div class="column">
                     <h3 class="title">Возможные результаты</h3>
                     <div class="add-block">
-                        <textarea placeholder="Результат" id="result-field"></textarea>
+                        <textarea placeholder="Результат" id="result-field" class="field"></textarea>
                         <button class="add-btn" id="add-result" title="Добавить">+</button>
                     </div>
                     <ul class="list" id="result-list"></ul>

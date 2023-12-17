@@ -47,7 +47,8 @@ function createChart() {
   const values = Object.values(base.results);
 
   const data = values.map(v => v.coef);
-  const categories = values.map(v => v.name);
+  const categories = Object.entries(base.results)
+    .map(([id, value]) => `${id} - ${value.name}`);
   const colors = values.map(getRandomColor);
   const height = values.length * 100;
 
@@ -79,7 +80,7 @@ function createChart() {
         colors: ['#fff']
       },
       formatter: (val, opt) =>
-        opt.w.globals.labels[opt.dataPointIndex] + ":  " + val,
+        `${opt.w.globals.labels[opt.dataPointIndex]}:  ${(+val).toPrecision(2)}`,
       offsetX: 0,
       dropShadow: {
         enabled: true
@@ -121,7 +122,8 @@ function updateChartData() {
   const values = Object.values(base.results);
 
   const data = values.map(v => v.coef);
-  const categories = values.map(v => v.name);
+  const categories = Object.entries(base.results)
+    .map(([id, value]) => `${id} - ${value.name}`);
   const colors = values.map(getRandomColor);
   const height = values.length * 100;
 
@@ -194,6 +196,7 @@ function updateResults() {
   } else {
     createChart();
   }
+  transition(drawAllRules);
 }
 
 function updateFactsCoef() {
@@ -203,8 +206,75 @@ function updateFactsCoef() {
   for (const key in base.results) {
     coefFromKey(key);
   }
-  console.log(base);
   updateChartValues();
+  transition(drawAllRules);
+}
+
+const mathEl = document.getElementById('math');
+
+let selectedRules = new Set();
+function selectRule(resultId, rule) {
+  if (selectedRules.has(rule)) return;
+  selectedRules.add(rule);
+
+  const math = document.createElement('math');
+
+  math.innerHTML = `<mrow>${
+    [
+      ...rule.positive.map(x => `<mi>${x}</mi>`),
+      ...rule.negative.map(x => `<mo>&#x00ac;</mo><mi>${x}</mi>`)
+    ].join('<mo>&#x2227;</mo>')
+  }<mo>&#x2192;</mo><mi>${resultId}</mi></mrow>`;
+
+  mathEl.appendChild(math);
+}
+
+function drawRules(selectId) {
+  const newResults = new Set();
+  for (const [id, result] of Object.entries(base.results)) {
+    for (const rule of result.rules) {
+      if (
+        rule.positive?.includes(selectId)
+        || rule.negative?.includes(selectId)
+      ) {
+        newResults.add(id);
+        selectRule(id, rule);
+      }
+    }
+  }
+  return newResults;
+}
+
+function drawAllRules() {
+  selectedRules = new Set();
+  mathEl.innerHTML = '';
+
+  const selectedResults = new Set(
+    Object.entries(base.facts)
+      .filter(([_, fact]) => fact.coef)
+      .map(([id, _]) => id)
+  );
+  let newResults = new Set(selectedResults);
+
+  while (newResults.size) {
+    const newResults2 = new Set();
+
+    for (const resultId of newResults) {
+      const newResults3 = drawRules(resultId);
+
+      for (const newResult of newResults3) {
+        if (!selectedResults.has(newResult)) {
+          newResults2.add(newResult);
+          selectedResults.add(newResult);
+        }
+      }
+    }
+
+    if (newResults2.size) {
+      mathEl.appendChild(document.createElement('br'));
+    }
+    newResults = newResults2;
+  }
 }
 
 const factListEl = document.getElementById('fact-list');
@@ -213,12 +283,12 @@ function onLoad(data) {
   base = data;
   factListEl.innerText = '';
 
-  for (const fact of Object.values(data.facts)) {
+  for (const [id, fact] of Object.entries(data.facts)) {
     fact.coef = 0;
 
     const factEl = document.createElement('span');
     factEl.classList.add('fact');
-    factEl.innerText = fact.name;
+    factEl.innerText = `${id}: ${fact.name}`;
 
     const inputEl = document.createElement('input');
     [

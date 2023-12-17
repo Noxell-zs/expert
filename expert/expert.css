@@ -7,7 +7,7 @@ body {
     height: 100vh;
     margin: 0;
     overflow: auto;
-    background: linear-gradient(90deg, #b086ff, #86ff9a);
+    background: linear-gradient(90deg, #fa8d9c, #a5ffff);
 }
 
 main {
@@ -50,7 +50,15 @@ button, .btn {
     align-items: center;
 }
 
-input, select, textarea {
+header {
+    background-color: #FFFFFF88;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.field, .base {
     text-align: center;
     padding: 0.5rem;
     border-radius: 8px;

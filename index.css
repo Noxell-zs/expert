@@ -7,7 +7,7 @@ body {
     height: 100vh;
     margin: 0;
     overflow: auto;
-    background: linear-gradient(#b086ff, #86ff9a);
+    background: linear-gradient(#fa8d9c, #a5ffff);
 
     display: flex;
     justify-content: center;

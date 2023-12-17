@@ -3,7 +3,7 @@ body {
     height: 100vh;
     margin: 0;
     overflow: auto;
-    background: linear-gradient(270deg, #b086ff, #86ff9a);
+    background: linear-gradient(270deg, #fa8d9c, #a5ffff);
 }
 
 main {
@@ -59,5 +59,20 @@ main {
     }
     &:active {
         filter: brightness(80%);
+    }
+}
+
+#math {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    font-size: 1.25rem;
+    background: white;
+    color: black;
+    padding: 0.5rem;
+    border-radius: 8px;
+
+    &:empty {
+        visibility: hidden;
     }
 }
