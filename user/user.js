@@ -50,7 +50,7 @@ function createChart() {
   const categories = Object.entries(base.results)
     .map(([id, value]) => `${id} - ${value.name}`);
   const colors = values.map(getRandomColor);
-  const height = values.length * 100;
+  const height = values.length * 70;
 
   const target = `Рекомендуемый выбор:  ${values.reduce(
     (prev, curr) => prev.coef > curr.coef ? prev : curr
@@ -60,7 +60,8 @@ function createChart() {
     series: [{data}],
     chart: {
       type: 'bar',
-      height
+      height,
+      width: "95%",
     },
     plotOptions: {
       bar: {
