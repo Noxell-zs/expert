@@ -143,7 +143,7 @@ function addRule(id, rule) {
 
     if (fact) {
       select.value = fact;
-      item.querySelector('input').value = isNegative;
+      item.querySelector('.negative input').checked = isNegative;
     }
 
     factRuleList.appendChild(item);
