@@ -218,13 +218,17 @@ function selectRule(resultId, rule) {
   selectedRules.add(rule);
 
   const math = document.createElement('math');
+  
+  const text = [
+    ...rule.positive.map(x => `<mi${
+      base.facts[x]?.coef ? ' style="color:#00FF00"' : ''
+    }>${x}</mi>`),
+    ...rule.negative.map(x => `<mo>&#x00ac;</mo><mi${
+      base.facts[x]?.coef? ' style="color:#00FF00"' : ''
+    }>${x}</mi>`)
+  ].join('<mo>&#x2227;</mo>');
 
-  math.innerHTML = `<mrow>${
-    [
-      ...rule.positive.map(x => `<mi>${x}</mi>`),
-      ...rule.negative.map(x => `<mo>&#x00ac;</mo><mi>${x}</mi>`)
-    ].join('<mo>&#x2227;</mo>')
-  }<mo>&#x2192;</mo><mi>${resultId}</mi></mrow>`;
+  math.innerHTML = `<mrow>${text}<mo>&#x2192;</mo><mi>${resultId}</mi></mrow>`;
 
   mathEl.appendChild(math);
 }
